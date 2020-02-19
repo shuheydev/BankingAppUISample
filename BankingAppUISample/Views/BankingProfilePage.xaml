@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:BankingAppUISample"
-             x:Class="BankingAppUISample.Views.BankingProfilePage">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="BankingAppUISample.Views.BankingProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:BankingAppUISample">
     <ContentPage.BindingContext>
         <local:ViewModels.BankingProfileViewModel />
     </ContentPage.BindingContext>
@@ -11,117 +12,266 @@
         <ScrollView>
             <StackLayout BackgroundColor="#fbfaff">
 
-                <!-- 1. Profile Picture-->
-                 <Grid>
-                     <Grid.RowDefinitions>
-                         <RowDefinition Height="400"/>
-                     </Grid.RowDefinitions>
-                     <Image Grid.Row="0" Source="SusanneRoll" VerticalOptions="Start" Aspect="AspectFill" Margin="0,-45,0,0"/>
-                     <Label Grid.Row="0" VerticalOptions="End" Padding="20,20,20,50">
-                       <Label.FormattedText>
+                <!--  1. Profile Picture  -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="400" />
+                    </Grid.RowDefinitions>
+                    <Image
+                        Grid.Row="0"
+                        Margin="0,-45,0,0"
+                        Aspect="AspectFill"
+                        Source="SusanneRoll"
+                        VerticalOptions="Start" />
+                    <Label
+                        Grid.Row="0"
+                        Padding="20,20,20,50"
+                        VerticalOptions="End">
+                        <Label.FormattedText>
                             <FormattedString>
-                               <Span Text="Marie Brown &#10;" FontSize="25" FontAttributes="Bold" ForegroundColor="White" />
-                               <Span Text="ID 1234567" FontSize="17" ForegroundColor="White" />
+                                <Span
+                                    FontAttributes="Bold"
+                                    FontSize="25"
+                                    ForegroundColor="White"
+                                    Text="Marie Brown &#10;" />
+                                <Span
+                                    FontSize="17"
+                                    ForegroundColor="White"
+                                    Text="ID 1234567" />
                             </FormattedString>
                         </Label.FormattedText>
-                    </Label> 
-                 </Grid>
+                    </Label>
+                </Grid>
 
-                <!-- 2. Contact information frame--> 
-               <Frame CornerRadius="20" Margin="0,-50,0,0" BackgroundColor="#fbfaff" HasShadow="False" HeightRequest="19"/>
+                <!--  2. Contact information frame  -->
+                <Frame
+                    Margin="0,-50,0,0"
+                    BackgroundColor="#fbfaff"
+                    CornerRadius="20"
+                    HasShadow="False"
+                    HeightRequest="19" />
 
-                <!-- It will contain blocks: 3, 4 and 5 --> 
-                    <Grid Margin="30,-20,30,10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/> 
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                             <RowDefinition Height="Auto"/>
-                             <RowDefinition Height="Auto"/>
-                             <RowDefinition Height="Auto"/>
-                             <RowDefinition Height="210"/>
-                             <RowDefinition Height="Auto"/>
-                             <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                         <!-- 3. Your balance -->
-                        <Label Grid.Row="0" Grid.Column="0" Text="Your balance" TextColor="Silver"/>
-                        <Label Grid.Row="1" Grid.Column="0" Text="$ 6,750.00" FontAttributes="Bold" FontSize="30"/>
-                        <Label Grid.Row="1" Grid.Column="1" Text="..." HorizontalOptions="End" />
+                <!--  It will contain blocks: 3, 4 and 5  -->
+                <Grid Margin="30,-20,30,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="180" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <!--  3. Your balance  -->
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Text="Your balance"
+                        TextColor="Silver" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="30"
+                        Text="$ 6,750.00" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        Text="..." />
 
-                        <!-- 4. Cards-->
-                        <Label Grid.Row="2" Grid.Column="0" Text="CARDS" TextColor="Silver" Margin="0,20,0,0"/>
-                        <CollectionView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"              
-                                    ItemsSource="{Binding cards}"
-                                    VerticalOptions="Start"  
-                                    ItemsLayout="HorizontalList">
-                                    <CollectionView.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackLayout WidthRequest="320">
-                                                <Image Source="{Binding CardImage}" Margin="0,0,15,0"/>
+                    <!--  4. Cards  -->
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="0,20,0,0"
+                        Text="CARDS"
+                        TextColor="Silver" />
+                    <CollectionView
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        ItemsSource="{Binding cards}"
+                        VerticalOptions="Start">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout
+                                ItemSpacing="10"
+                                Orientation="Horizontal"
+                                SnapPointsAlignment="Center"
+                                SnapPointsType="MandatorySingle" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <RelativeLayout>
+                                    <Frame
+                                        x:Name="CreditCardFrame"
+                                        Margin="5"
+                                        Padding="0"
+                                        BorderColor="Black"
+                                        CornerRadius="10"
+                                        HorizontalOptions="Center"
+                                        IsClippedToBounds="True"
+                                        RelativeLayout.HeightConstraint="{ConstraintExpression ElementName=CreditCardFrame,
+                                                                                               Factor=0.63,
+                                                                                               Property=Width}"
+                                        VerticalOptions="Center"
+                                        WidthRequest="250">
+                                        <StackLayout BackgroundColor="Aqua">
+                                            <Image
+                                                Aspect="AspectFill"
+                                                Scale="1.1"
+                                                Source="{Binding CardImage}" />
 
-                                                <Grid Margin="25,-150,0,0">
-                                                  <Grid.ColumnDefinitions>
-                                                      <ColumnDefinition Width="Auto"/>
-                                                      <ColumnDefinition Width="Auto"/>
-                                                      <ColumnDefinition Width="Auto"/>
-                                                      <ColumnDefinition Width="Auto"/>
-                                                  </Grid.ColumnDefinitions>
-                                                  <Grid.RowDefinitions>
-                                                      <RowDefinition Height="*"/>
-                                                      <RowDefinition Height="*"/>
-                                                      <RowDefinition Height="*"/>
-                                                  </Grid.RowDefinitions>
+                                            <Grid Margin="25,-150,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
 
-                                                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding CardBussinessCategory}" TextColor="PapayaWhip" FontAttributes="Bold" FontSize="18"/>
-                                                    <Label Grid.Row="1" Grid.Column="0" Text="****" TextColor="PapayaWhip" FontAttributes="Bold" FontSize="30" />
-                                                    <Label Grid.Row="1" Grid.Column="1" Text="****" TextColor="PapayaWhip" FontAttributes="Bold" FontSize="30" />
-                                                    <Label Grid.Row="1" Grid.Column="2" Text="****" TextColor="PapayaWhip" FontAttributes="Bold" FontSize="30" />
-                                                    <Label Grid.Row="1" Grid.Column="3" Text="{Binding CardNumber}" TextColor="PapayaWhip" FontAttributes="Bold" FontSize="20" />
-                                                    <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding CardType}" TextColor="PapayaWhip" FontAttributes="Bold" FontSize="20" />
-                                                    <Image Grid.Row="2" Grid.Column="2" Source="{Binding CardType}" />
-                                                    <Label Grid.Row="2" Grid.Column="3" Text="{Binding CardExpirationDate}" TextColor="PapayaWhip" FontAttributes="Bold" FontSize="20"/>
+                                                <Label
+                                                    Grid.Row="0"
+                                                    Grid.Column="0"
+                                                    Grid.ColumnSpan="3"
+                                                    FontAttributes="Bold"
+                                                    FontSize="18"
+                                                    Text="{Binding CardBussinessCategory}"
+                                                    TextColor="PapayaWhip" />
+                                                <Label
+                                                    Grid.Row="1"
+                                                    Grid.Column="0"
+                                                    FontAttributes="Bold"
+                                                    FontSize="24"
+                                                    Text="****"
+                                                    TextColor="PapayaWhip" />
+                                                <Label
+                                                    Grid.Row="1"
+                                                    Grid.Column="1"
+                                                    FontAttributes="Bold"
+                                                    FontSize="24"
+                                                    Text="****"
+                                                    TextColor="PapayaWhip" />
+                                                <Label
+                                                    Grid.Row="1"
+                                                    Grid.Column="2"
+                                                    FontAttributes="Bold"
+                                                    FontSize="24"
+                                                    Text="****"
+                                                    TextColor="PapayaWhip" />
+                                                <Label
+                                                    Grid.Row="1"
+                                                    Grid.Column="3"
+                                                    FontAttributes="Bold"
+                                                    FontSize="20"
+                                                    Text="{Binding CardNumber}"
+                                                    TextColor="PapayaWhip" />
+                                                <Label
+                                                    Grid.Row="2"
+                                                    Grid.Column="0"
+                                                    Grid.ColumnSpan="2"
+                                                    FontAttributes="Bold"
+                                                    FontSize="18"
+                                                    Text="{Binding CardType}"
+                                                    TextColor="PapayaWhip" />
+                                                <Image
+                                                    Grid.Row="2"
+                                                    Grid.Column="2"
+                                                    Source="{Binding CardType}" />
+                                                <Label
+                                                    Grid.Row="2"
+                                                    Grid.Column="3"
+                                                    FontAttributes="Bold"
+                                                    FontSize="18"
+                                                    Text="{Binding CardExpirationDate}"
+                                                    TextColor="PapayaWhip" />
 
-                                                </Grid>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Frame>
+                                </RelativeLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
 
-                                            </StackLayout>
-                                       </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                        </CollectionView>
-                   
-                     <!-- 5. History-->
-                    <Label Grid.Row="4" Grid.Column="0" Text="HISTORY" TextColor="Silver"/>
-                    <Image Grid.Row="4" Grid.Column="1" Source="Refresh" HorizontalOptions="End" WidthRequest="20"/>
-                     <CollectionView Grid.Row="5"
-                            Margin="0,23,0,0"
-                            Grid.ColumnSpan="2"
-                            BackgroundColor="#fbfaff"
-                            ItemsSource="{Binding history}"
-                            VerticalOptions="Center"
-                            HeightRequest="240">
-                            <CollectionView.ItemTemplate> 
-                               <DataTemplate> 
-                                    <Grid BackgroundColor="White">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" /> 
-                                        </Grid.RowDefinitions> 
-                                       <Grid.ColumnDefinitions>
-                                           <ColumnDefinition Width="Auto"/>
-                                           <ColumnDefinition Width="Auto"/>
-                                           <ColumnDefinition Width="*"/>
-                                       </Grid.ColumnDefinitions>
-                                       <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Source="{Binding Picture}" WidthRequest="80" HorizontalOptions="Start"/>
-                                       <Label Grid.Column="1" Grid.Row="0" Text="{Binding Name}" Padding="20,0,0,0" HorizontalOptions="Start"/>
-                                       <Label Grid.Column="1" Grid.Row="1" Text="{Binding Price}" Padding="20,0,0,0" HorizontalOptions="Start" TextColor="Red" FontAttributes="Bold"/>
-                                       <Label Grid.Column="2" Grid.Row="0" Text="Date" HorizontalOptions="End"/>
-                                       <Label Grid.Column="2" Grid.Row="1" Text="{Binding Date}" HorizontalOptions="End" TextColor="Silver"/> 
-                                    </Grid> 
-                                </DataTemplate>
-                                 </CollectionView.ItemTemplate>
-                     </CollectionView>
-                </Grid> 
-                 
+                    <!--  5. History  -->
+                    <Label
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Text="HISTORY"
+                        TextColor="Silver" />
+                    <Image
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        Source="Refresh"
+                        WidthRequest="20" />
+                    <CollectionView
+                        Grid.Row="5"
+                        Grid.ColumnSpan="2"
+                        Margin="0,23,0,0"
+                        BackgroundColor="#fbfaff"
+                        HeightRequest="240"
+                        ItemsSource="{Binding history}"
+                        VerticalOptions="Center">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid BackgroundColor="White">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="0"
+                                        HorizontalOptions="Start"
+                                        Source="{Binding Picture}"
+                                        WidthRequest="80" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Padding="20,0,0,0"
+                                        HorizontalOptions="Start"
+                                        Text="{Binding Name}" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Padding="20,0,0,0"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Start"
+                                        Text="{Binding Price}"
+                                        TextColor="Red" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        HorizontalOptions="End"
+                                        Text="Date" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="2"
+                                        HorizontalOptions="End"
+                                        Text="{Binding Date}"
+                                        TextColor="Silver" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
