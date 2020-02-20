@@ -3,6 +3,7 @@
     x:Class="BankingAppUISample.Views.BankingProfilePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:BankingAppUISample.Converters"
     xmlns:local="clr-namespace:BankingAppUISample">
     <ContentPage.BindingContext>
         <local:ViewModels.BankingProfileViewModel />
@@ -105,99 +106,96 @@
                         </CollectionView.ItemsLayout>
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <RelativeLayout>
-                                    <Frame
-                                        x:Name="CreditCardFrame"
-                                        Margin="5"
-                                        Padding="0"
-                                        BorderColor="Black"
-                                        CornerRadius="10"
-                                        HorizontalOptions="Center"
-                                        IsClippedToBounds="True"
-                                        RelativeLayout.HeightConstraint="{ConstraintExpression ElementName=CreditCardFrame,
-                                                                                               Factor=0.63,
-                                                                                               Property=Width}"
-                                        VerticalOptions="Center"
-                                        WidthRequest="250">
-                                        <StackLayout BackgroundColor="Aqua">
+                                <Frame
+                                    x:Name="CreditCardFrame"
+                                    Margin="5"
+                                    Padding="0"
+                                    BorderColor="Black"
+                                    CornerRadius="10"
+                                    HeightRequest="{Binding WidthRequest, Source={x:Reference CreditCardFrame}, Converter={converter:AspectCalculator}, ConverterParameter=0.630}"
+                                    HorizontalOptions="Center"
+                                    IsClippedToBounds="True"
+                                    VerticalOptions="Center"
+                                    WidthRequest="250">
+                                    <StackLayout BackgroundColor="Aqua">
+                                        <Image
+                                            Aspect="AspectFill"
+                                            Scale="1.5"
+                                            Source="{Binding CardImage}"
+                                            VerticalOptions="Start" />
+
+                                        <Grid Margin="25,-150,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="3"
+                                                FontAttributes="Bold"
+                                                FontSize="18"
+                                                Text="{Binding CardBussinessCategory}"
+                                                TextColor="PapayaWhip" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                FontAttributes="Bold"
+                                                FontSize="24"
+                                                Text="****"
+                                                TextColor="PapayaWhip" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                FontAttributes="Bold"
+                                                FontSize="24"
+                                                Text="****"
+                                                TextColor="PapayaWhip" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="2"
+                                                FontAttributes="Bold"
+                                                FontSize="24"
+                                                Text="****"
+                                                TextColor="PapayaWhip" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="3"
+                                                FontAttributes="Bold"
+                                                FontSize="20"
+                                                Text="{Binding CardNumber}"
+                                                TextColor="PapayaWhip" />
+                                            <Label
+                                                Grid.Row="2"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                FontAttributes="Bold"
+                                                FontSize="18"
+                                                Text="{Binding CardType}"
+                                                TextColor="PapayaWhip" />
                                             <Image
-                                                Aspect="AspectFill"
-                                                Scale="1.1"
-                                                Source="{Binding CardImage}" />
+                                                Grid.Row="2"
+                                                Grid.Column="2"
+                                                Source="{Binding CardType}" />
+                                            <Label
+                                                Grid.Row="2"
+                                                Grid.Column="3"
+                                                FontAttributes="Bold"
+                                                FontSize="18"
+                                                Text="{Binding CardExpirationDate}"
+                                                TextColor="PapayaWhip" />
 
-                                            <Grid Margin="25,-150,0,0">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="Auto" />
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*" />
-                                                    <RowDefinition Height="*" />
-                                                    <RowDefinition Height="*" />
-                                                </Grid.RowDefinitions>
-
-                                                <Label
-                                                    Grid.Row="0"
-                                                    Grid.Column="0"
-                                                    Grid.ColumnSpan="3"
-                                                    FontAttributes="Bold"
-                                                    FontSize="18"
-                                                    Text="{Binding CardBussinessCategory}"
-                                                    TextColor="PapayaWhip" />
-                                                <Label
-                                                    Grid.Row="1"
-                                                    Grid.Column="0"
-                                                    FontAttributes="Bold"
-                                                    FontSize="24"
-                                                    Text="****"
-                                                    TextColor="PapayaWhip" />
-                                                <Label
-                                                    Grid.Row="1"
-                                                    Grid.Column="1"
-                                                    FontAttributes="Bold"
-                                                    FontSize="24"
-                                                    Text="****"
-                                                    TextColor="PapayaWhip" />
-                                                <Label
-                                                    Grid.Row="1"
-                                                    Grid.Column="2"
-                                                    FontAttributes="Bold"
-                                                    FontSize="24"
-                                                    Text="****"
-                                                    TextColor="PapayaWhip" />
-                                                <Label
-                                                    Grid.Row="1"
-                                                    Grid.Column="3"
-                                                    FontAttributes="Bold"
-                                                    FontSize="20"
-                                                    Text="{Binding CardNumber}"
-                                                    TextColor="PapayaWhip" />
-                                                <Label
-                                                    Grid.Row="2"
-                                                    Grid.Column="0"
-                                                    Grid.ColumnSpan="2"
-                                                    FontAttributes="Bold"
-                                                    FontSize="18"
-                                                    Text="{Binding CardType}"
-                                                    TextColor="PapayaWhip" />
-                                                <Image
-                                                    Grid.Row="2"
-                                                    Grid.Column="2"
-                                                    Source="{Binding CardType}" />
-                                                <Label
-                                                    Grid.Row="2"
-                                                    Grid.Column="3"
-                                                    FontAttributes="Bold"
-                                                    FontSize="18"
-                                                    Text="{Binding CardExpirationDate}"
-                                                    TextColor="PapayaWhip" />
-
-                                            </Grid>
-                                        </StackLayout>
-                                    </Frame>
-                                </RelativeLayout>
+                                        </Grid>
+                                    </StackLayout>
+                                </Frame>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
